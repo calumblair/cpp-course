@@ -18,19 +18,14 @@ void PrintLamp(const Lamp& lamp){
 	std::cout<<"device state:"<< lamp.state<<std::endl;
 }
 
-
 void Lamp_on(Lamp& lamp){
 	lamp.state=true;
-	std::cout<<"Lamp "<< static_cast<char>(static_cast<int>(lamp.device.first)+65)<<
-			lamp.device.second<<" has been turned on"<<std::endl;
-
+	PrintLamp(lamp);
 }
 
 void Lamp_off(Lamp& lamp){
 	lamp.state=false;
-	std::cout<<"Lamp "<< static_cast<char>(static_cast<int>(lamp.device.first)+65)<<
-			lamp.device.second<<" has been turned off"<<std::endl;
-
+	PrintLamp(lamp);
 }
 
 Lamp Make_lamp(void){
@@ -41,6 +36,7 @@ Lamp Make_lamp(void){
 	while (flag==false){
 		std::cout<<"Please give valid house code:"<<std::endl;
 		std::cin >> house_in;
+		house_in = toupper(house_in);
 		if (house_in>='A' && house_in<='P'){
 			flag=true;
 		}
