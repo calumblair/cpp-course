@@ -21,8 +21,9 @@ struct Lamp{
 
 };
 
-
-
-
+void Lamp_on(Lamp& lamp);
+void Lamp_off(Lamp& lamp);
+Lamp Make_lamp(void);
+void PrintLamp(const Lamp& lamp);
 
 #endif /* LAMP_H_ */
