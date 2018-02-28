@@ -33,7 +33,7 @@ class Lamp{
 		DeviceCode id(void);
 		void on(void);
 		void off(void);
-		bool is_on(void);
+		bool is_on(void)  const;
 		void status(void);
 	};
 
@@ -42,6 +42,10 @@ using Lamp_Array=std::array<Lamp,10>;
 Lamp Make_lamp(void);
 void Lamp_array_on(Lamp_Array& lamp_array);
 void Lamp_array_off(Lamp_Array& lamp_array);
+
+void Lamp_status(Lamp* lmp);
+void Lamp_status(const Lamp& lmp);
+
 
 }
 #endif /* LAMP_H_ */

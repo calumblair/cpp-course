@@ -38,6 +38,7 @@ void Lamp::status(){
 	}
 }
 
+
 void Lamp::set_id(DeviceCode d){
 	device.first=d.first;
 	device.second=d.second;
@@ -57,7 +58,7 @@ void Lamp::off(){
 	status();
 }
 
-bool Lamp::is_on(){
+bool Lamp::is_on() const{
 	return (state && device.first!=HouseCode::INVALID);
 }
 
@@ -103,5 +104,25 @@ void Lamp_array_off(Lamp_Array& lamp_array){
 	}
 }
 
+void Lamp_status(Lamp* lmp){
+	bool stat=(*lmp).is_on();
+	if (stat==true){
+		std::cout<<"The lamp is "<<"on"<<std::endl;
+	}
+	else{
+		std::cout<<"The lamp is "<<"off"<<std::endl;
+
+	}
 }
 
+void Lamp_status(const Lamp& lmp){
+	bool stat=lmp.is_on();
+	if (stat==true){
+		std::cout<<"The lamp is "<<"on"<<std::endl;
+	}
+	else{
+		std::cout<<"The lamp is "<<"off"<<std::endl;
+
+	}
+}
+}

@@ -14,26 +14,9 @@ using namespace std;
 using namespace Home;
 
 int main() {
+	Lamp study{HouseCode::G, 5};
+	study.on();
 
-
-	Lamp default_lamp;
-	default_lamp.status();
-	Lamp l2{HouseCode::G, 5};
-
-	std::array<Lamp,8> lamps {{
-		{ HouseCode::B, 6},
-		{ HouseCode::B, 8},
-		{ HouseCode::C, 6}
-	}};
-	lamps[0].on();
-	lamps[2].on();
-
-	for(auto& l: lamps)
-		l.status();
-
-
-
-	l2.status();
-
+	Lamp_status( study);
 	return 0;
 }
