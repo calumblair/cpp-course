@@ -26,6 +26,7 @@ public:
 	void status(void);
 	bool add(Lamp& device);
 	void set_name(const char* new_name);
+	void dim(uint32_t percent);
 
 
 	Room()=default;

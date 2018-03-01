@@ -31,10 +31,10 @@ class Lamp{
 		~Lamp();
 		void set_id(DeviceCode);
 		DeviceCode id(void);
-		void on(void);
-		void off(void);
-		bool is_on(void)  const;
-		void status(void);
+		virtual void on(void);
+		virtual void off(void);
+		virtual bool is_on(void)  const;
+		virtual void status(void);
 	};
 
 using Lamp_Array=std::array<Lamp,10>;

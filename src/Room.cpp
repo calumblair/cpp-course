@@ -9,6 +9,7 @@
 #include "lamp.h"
 #include <iostream>
 #include <algorithm>
+#include "Dimmablelamp.h"
 
 namespace Home{
 //helper functions for count_if
@@ -52,6 +53,19 @@ void Room::all_off(void){
 		(lamp_array[i])->off();
 	}
 }
+void Room::dim(uint32_t percent){
+
+	for (unsigned i=0; i<idx; i++ ){
+		Lamp* lamp_i = lamp_array[i];
+
+		Dimmable_lamp* dim_lamp{dynamic_cast<Dimmable_lamp*>(lamp_i)};
+		if(dim_lamp !=nullptr){
+			dim_lamp->dim(percent);
+		}
+	}
+
+
+}
 
 void Room::status(void){
 	int lights_on  = std::count_if(lamp_array.begin(), lamp_array.end(), &exists_and_is_on);
@@ -63,5 +77,7 @@ void Room::status(void){
 void Room::set_name(const char* new_name) {
 	name = new_name;
 }
+
+
 
 }
