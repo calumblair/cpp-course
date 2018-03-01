@@ -11,30 +11,19 @@
 #include <iostream>
 #include <utility>
 #include <array>
+#include "Module.h"
 
 
 namespace Home{
-enum class HouseCode: unsigned char{
-	INVALID = 0, A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P
-};
 
-using DeviceCode = std::pair <HouseCode, int>;
-
-class Lamp{
-	private:
-		DeviceCode device {HouseCode::INVALID, 0};
-		bool state {false};
-
+class Lamp: public Module{
 	public:
 		Lamp()=default;
 		Lamp( HouseCode house_code, int unit_code);
 		~Lamp();
-		void set_id(DeviceCode);
-		DeviceCode id(void);
+
 		virtual void on(void);
 		virtual void off(void);
-		virtual bool is_on(void)  const;
-		virtual void status(void);
 	};
 
 using Lamp_Array=std::array<Lamp,10>;

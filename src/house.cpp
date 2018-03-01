@@ -9,6 +9,7 @@
 #include "lamp.h"
 
 #include "Dimmablelamp.h"
+#include "Appliance.h"
 #include "Room.h"
 #include "EventList.h"
 #include "Event.h"
@@ -25,6 +26,7 @@ int main() {
 	Lamp lamp_a3 {HouseCode::A, 3};
 	Lamp lamp_b1 {HouseCode::B, 1};
 	Dimmable_lamp dim_lamp1 {HouseCode::B , 2};
+	Appliance appliance1 {HouseCode::B , 3};
 	dim_lamp1.dim(0);
 
 	Room room_a{};
@@ -33,7 +35,12 @@ int main() {
 	room_a.add(lamp_a3);
 	room_b.add(lamp_b1);
 	room_b.add(dim_lamp1);
+	room_b.add(appliance1);
+
+	appliance1.on();
 	room_b.dim(50);
+
+	room_b.status();
 
 
 

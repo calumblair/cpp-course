@@ -17,35 +17,15 @@ using namespace std;
 namespace Home{
 
 Lamp::Lamp(HouseCode house_code, int unit_code):
-						device {house_code, unit_code}
+						Module {house_code, unit_code}
 {
-	std::cout<<"Constructing from non-default constructor: ";
+	std::cout<<"Constructing a lamp: ";
 	status();
 }
 
 Lamp::~Lamp(){
-	state = false;
-	cout<<"Destroying: ";
+	cout<<"Destroying a lamp ";
 	status();
-}
-
-void Lamp::status(){
-	if (device.first != HouseCode::INVALID){
-		std::cout<<"house code:";
-		std::cout <<static_cast<char>(static_cast<int>(device.first)+64);
-		std::cout<<"     unit code:"<< device.second	<<
-				"     device state:"<< state<<std::endl;
-	}
-}
-
-
-void Lamp::set_id(DeviceCode d){
-	device.first=d.first;
-	device.second=d.second;
-}
-
-DeviceCode Lamp::id(){
-	return {device.first, device.second};
 }
 
 void Lamp::on(){
@@ -57,10 +37,6 @@ void Lamp::on(){
 void Lamp::off(){
 	state=false;
 	std::cout << "Turning off lamp: ";status();
-}
-
-bool Lamp::is_on() const{
-	return (state && device.first!=HouseCode::INVALID);
 }
 
 Lamp Make_lamp(void){
@@ -123,7 +99,6 @@ void Lamp_status(const Lamp& lmp){
 	}
 	else{
 		std::cout<<"The lamp is "<<"off"<<std::endl;
-
 	}
 }
 }
