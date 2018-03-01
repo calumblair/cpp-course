@@ -30,7 +30,7 @@ int main() {
 	room_b.add(lamp_b1);
 
 	Time::Event e1 { Instant {0,0}, Instant {0,0}, room_a};
-	//Time::Event e2 { };
+	Time::Event e2 { };
 
 	Time::EventList events {};
 

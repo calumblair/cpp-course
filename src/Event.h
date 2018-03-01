@@ -14,7 +14,7 @@ namespace Time {
 
 class Event {
 public:
-
+	Event()=default;
 	Event(const Instant& inst_on, const Instant& inst_off,  Home::Room&  room );
 	virtual ~Event();
 	void do_action(const Instant& inst);

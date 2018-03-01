@@ -18,12 +18,9 @@ class Instant;
 
 class EventList {
 private:
-	static constexpr unsigned max_events{1 /*16*/};
+	static constexpr unsigned max_events{16};
 	unsigned int idx {0};
-	//std::array<Event, max_events> events_array {};
-	Home::Room nonexistent_room;
-	std::array<Event, max_events> events_array
-	{{{Instant {0,0}, Instant {0,0}, nonexistent_room }}};
+	std::array<Event, max_events> events_array {};
 
 public:
 	EventList()=default;
