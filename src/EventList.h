@@ -10,7 +10,9 @@
 #include <array>
 #include "Room.h"
 #include "Instant.h"
+#include <list>
 #include "Event.h"
+#include <memory>
 namespace Time {
 
 class Instant;
@@ -18,9 +20,8 @@ class Instant;
 
 class EventList {
 private:
-	static constexpr unsigned max_events{16};
-	unsigned int idx {0};
-	std::array<Event, max_events> events_array {};
+
+	std::list<std::unique_ptr<Event>> events_list {};
 
 public:
 	EventList()=default;

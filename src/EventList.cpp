@@ -13,24 +13,23 @@ namespace Time {
 
 bool EventList::add_event(const Instant& inst_on, const Instant& inst_off,  Home::Room&  room )
 {
-	if(idx==max_events){
-		std::cout<<"No more events can be added"<<std::endl;
-		return false;
-	}
-	else{
+
 
 		//events_array[idx] = Event(inst_on,inst_off, room);
 		//events_array[idx].Event{inst_on,inst_off, room};
 		Event e{inst_on,inst_off, room};
-		events_array[idx] = e;
-		idx++;
+
+		events_list.emplace_back(std::make_unique<Event>(e));
+
+
+
 		return true;
-	}
+
 
 }
 void EventList::update_time(const Instant& inst) {
-	for (auto& i : events_array ){
-		i.do_action(inst);
+	for (auto& i : events_list ){
+		i->do_action(inst);
 	}
 }
 
