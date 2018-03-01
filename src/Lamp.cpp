@@ -50,12 +50,13 @@ DeviceCode Lamp::id(){
 
 void Lamp::on(){
 	state=true;
+	std::cout << "Turning on  lamp: ";
 	status();
 }
 
 void Lamp::off(){
 	state=false;
-	status();
+	std::cout << "Turning off lamp: ";status();
 }
 
 bool Lamp::is_on() const{
