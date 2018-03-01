@@ -10,6 +10,7 @@
 #include <iostream>
 #include <utility>
 #include <array>
+#include "Iswitchable.h"
 
 namespace Home {
 
@@ -19,12 +20,13 @@ enum class HouseCode: unsigned char{
 
 using DeviceCode = std::pair <HouseCode, int>;
 
-class Module {
+class Module: public I_switchable {
 private:
 	DeviceCode device {HouseCode::INVALID, 0};
 
 protected:
 	bool state {false};
+	bool is_on(void)  const;
 
 public:
 	Module()=default;
@@ -32,9 +34,6 @@ public:
 	virtual ~Module();
 	void set_id(DeviceCode);
 	DeviceCode id(void) ;
-	virtual void on(void) =0;
-	virtual void off(void) =0;
-	virtual bool is_on(void)  const;
 	virtual void status(void);
 
 };

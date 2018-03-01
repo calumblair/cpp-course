@@ -25,17 +25,16 @@ Appliance::~Appliance(){
 
 
 void Appliance::on (void){
-// state=true;
-// cout<<"Appliance turned on ";
-// status();
-	std::cout << "Appliance turned on : ";
- Module::on();
+state=true;
+cout<<"Appliance turned on ";
+status();
+
 
 }
 void Appliance::off (void){
-
- cout<<"Appliance turned off ";
- Module::off();
+	state=false;
+	cout<<"Appliance turned off ";
+	status();
 
 }
 } /*

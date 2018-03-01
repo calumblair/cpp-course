@@ -30,15 +30,17 @@ int main() {
 	dim_lamp1.dim(0);
 
 	Room room_a{};
-	Room room_b{};
+	Room room_b{"Lounge"};
 	room_a.add(lamp_a2);
 	room_a.add(lamp_a3);
+
+
 	room_b.add(lamp_b1);
 	room_b.add(dim_lamp1);
 	room_b.add(appliance1);
 
 	appliance1.on();
-	room_b.dim(50);
+
 
 	room_b.status();
 

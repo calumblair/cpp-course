@@ -26,15 +26,6 @@ class Lamp: public Module{
 		virtual void off(void);
 	};
 
-using Lamp_Array=std::array<Lamp,10>;
-
-Lamp Make_lamp(void);
-void Lamp_array_on(Lamp_Array& lamp_array);
-void Lamp_array_off(Lamp_Array& lamp_array);
-
-void Lamp_status(Lamp* lmp);
-void Lamp_status(const Lamp& lmp);
-
 
 }
 #endif /* LAMP_H_ */

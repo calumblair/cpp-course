@@ -52,15 +52,6 @@ bool Module::is_on() const{
 	return (state && device.first!=HouseCode::INVALID);
 }
 
-void Module::on(){
-	state=true;
 
-	status();
-}
-
-void Module::off(){
-	state=false;
-    status();
-}
 
 }/* namespace Home */
