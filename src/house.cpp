@@ -50,9 +50,8 @@ int main() {
 
 	//Time::EventList events {};
 
-	controller.add_event( Time::Instant { 9,00}, {9,10}, room_a );
-	controller.add_event( Time::Instant { 9,05}, {9,10}, room_b );
-
+	controller.add_event( Time::Instant { 0,01}, {0,20}, room_a );
+	controller.add_event( Time::Instant { 0,05}, {0,20}, room_b );
 
 	std::thread clock_thread {&RealTimeClock::run, &clock};
 	std::thread controller_thread  {&RoomController::run, &controller };
@@ -62,8 +61,7 @@ int main() {
 	}
 	if(controller_thread.joinable()){
 			controller_thread.join();
-		}
-
+	}
 
 	return 0;
 }
