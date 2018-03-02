@@ -9,11 +9,13 @@
 #define MESSAGEQUEUE_H_
 #include "Instant.h"
 #include <queue>
+#include <mutex>
 namespace Home {
 
 class MessageQueue {
 private:
 	 std::queue<Time::Instant> myqueue {};
+	 std::mutex mutex;
 public:
 	MessageQueue();
 	virtual ~MessageQueue();
