@@ -21,24 +21,13 @@ RealTimeClock::~RealTimeClock() {
 }
 
 bool RealTimeClock::run() {
-	minute++;
-	if (minute == 60){
-		minute = 0;
-		hour++;
-		if(hour == 24){
-			hour = 0;
-			day++;
-		}
-	}
-	Time::Instant current_time {hour,minute};
-	controller.update_time(current_time);
-
-	//std::this_thread::sleep_for (std::chrono::milliseconds{1000});
-
-	if(day==1)
+	while(1){
+	controller.update_time(clock);
+	clock.advance();
+	std::this_thread::sleep_for (std::chrono::milliseconds{100});
+	if(clock==Instant {0,0}) //if day has rolled over
 		return true;
-	else
-		return false;
+	}
 }
 
 } /* namespace Time */

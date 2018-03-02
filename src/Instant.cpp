@@ -36,5 +36,15 @@ bool Instant::is_equal(const Instant& inst) const{
 		return false;
 	}
 }
-
+void Instant::advance(){
+	minute++;
+	if (minute == 60){
+		minute = 0;
+		hour++;
+		if(hour == 24){
+			hour = 0;
+		}
+	}
+	std::cout<< "tick " << (int) hour <<":" << (int) minute <<std::endl;
+}
 } /* namespace Time */

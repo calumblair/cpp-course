@@ -13,8 +13,7 @@ namespace Time {
 class RealTimeClock {
 private:
 	Home::RoomController& controller;
-
-	std::uint8_t hour {0}, minute{0}, day{0};
+	Time::Instant clock {0,0};
 public:
 	RealTimeClock(Home::RoomController&);
 	 ~RealTimeClock();
