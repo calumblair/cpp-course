@@ -7,17 +7,16 @@
 
 #ifndef ROOM_H_
 #define ROOM_H_
-#include <array>
-
+#include <vector>
+#include <string>
 
 namespace Home{
 class I_switchable;
 
 class Room {
 private:
-	static constexpr unsigned max_modules{4};
-	unsigned int idx {0};
-	std::array<I_switchable*, max_modules> module_array {{nullptr}} ;
+	static constexpr unsigned initial_switches{4};
+	std::vector<I_switchable*> switches {{nullptr}} ;
 	std::string name;
 public:
 

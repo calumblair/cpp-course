@@ -8,6 +8,7 @@
 #include "Room.h"
 #include "lamp.h"
 #include <iostream>
+#include <vector>
 #include <algorithm>
 #include "Dimmablelamp.h"
 
@@ -22,6 +23,7 @@ static bool exists_and_is_off(I_switchable* lamp){
 
 
 Room::Room(const char* new_name): name{new_name}{
+	switches.reserve(initial_switches);
 }
 
 Room::~Room() {
@@ -29,34 +31,24 @@ Room::~Room() {
 }
 
 bool Room::add(I_switchable& device){
-	if(idx==max_modules){
-		std::cout<<"No more lamps can be added"<<std::endl;
-		return false;
-	}
-	else{
-		module_array[idx]=&device;
-		idx++;
-		return true;
-	}
+	switches.push_back(&device);
+	return true;
 }
 
 void Room::all_on(void){
-	for (unsigned i=0; i<idx; i++ ){
-		(module_array[i])->on();
+	for (auto s:switches){
+		s->on();
 	}
 }
 
 void Room::all_off(void){
-	for (unsigned i=0; i<idx; i++ ){
-		(module_array[i])->off();
-	}
+	for (auto s:switches){
+			s->off();
+		}
 }
 void Room::dim(uint32_t percent){
-
-	for (unsigned i=0; i<idx; i++ ){
-		I_switchable* lamp_i = module_array[i];
-
-		Dimmable_lamp* dim_lamp{dynamic_cast<Dimmable_lamp*>(lamp_i)};
+	for (auto s:switches ){
+		Dimmable_lamp* dim_lamp{dynamic_cast<Dimmable_lamp*>(s)};
 		if(dim_lamp !=nullptr){
 			dim_lamp->dim(percent);
 		}
@@ -64,8 +56,8 @@ void Room::dim(uint32_t percent){
 }
 
 void Room::status(void){
-	int lights_on  = std::count_if(module_array.begin(), module_array.end(), &exists_and_is_on);
-	int lights_off = std::count_if(module_array.begin(), module_array.end(), &exists_and_is_off);
+	int lights_on  = std::count_if(switches.begin(), switches.end(), &exists_and_is_on);
+	int lights_off = std::count_if(switches.begin(), switches.end(), &exists_and_is_off);
 	std::cout << "In " << name << " there are " << lights_on << " switches on and "
 			<< lights_off << " lamps off.\n";
 }
