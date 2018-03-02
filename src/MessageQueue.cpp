@@ -7,9 +7,10 @@
 
 #include "MessageQueue.h"
 #include <mutex>
+#include <thread>
 
 namespace Home {
-	using Guard = std::lock_guard<std::mutex>;;
+	using Guard = std::unique_lock<std::mutex>;;
 
 MessageQueue::MessageQueue() {
 	// TODO Auto-generated constructor stub
@@ -28,6 +29,11 @@ bool MessageQueue::push(Time::Instant instant) {
 
 Time::Instant MessageQueue::get() {
 	Guard guard{mutex};
+	while (myqueue.empty()){
+		guard.unlock();
+		std::this_thread::yield();
+		guard.lock();
+	}
 	Time::Instant tval=myqueue.front();
 	myqueue.pop();
 	return tval;
