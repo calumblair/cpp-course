@@ -9,21 +9,23 @@
 #include "Event.h"
 #include <iostream>
 #include <array>
+#include <algorithm>
+
 namespace Time {
 
 bool EventList::add_event(const Instant& inst_on, const Instant& inst_off,  Home::Room&  room )
 {
 
 
-		//events_array[idx] = Event(inst_on,inst_off, room);
-		//events_array[idx].Event{inst_on,inst_off, room};
-		Event e{inst_on,inst_off, room};
+	//events_array[idx] = Event(inst_on,inst_off, room);
+	//events_array[idx].Event{inst_on,inst_off, room};
+	Event e{inst_on,inst_off, room};
 
-		events_list.emplace_back(std::make_unique<Event>(e));
+	events_list.emplace_back(std::make_unique<Event>(e));
 
 
 
-		return true;
+	return true;
 
 
 }
@@ -35,5 +37,14 @@ void EventList::update_time(const Instant& inst) {
 
 EventList::~EventList() {
 }
+
+
+void EventList::remove_room(const Home::Room& room){
+	auto rooms_match=[this, &room] (std::unique_ptr<Event>&iter_event) -> bool {
+		return ( &room == &(iter_event->get_room()) );
+	};
+	events_list.remove_if(rooms_match);
+}
+
 } /* namespace Time */
 

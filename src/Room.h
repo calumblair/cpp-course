@@ -16,7 +16,7 @@ class I_switchable;
 class Room {
 private:
 	static constexpr unsigned initial_switches{4};
-	std::vector<I_switchable*> switches {{nullptr}} ;
+	std::vector<I_switchable*> switches {} ;
 	std::string name;
 public:
 

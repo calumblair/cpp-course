@@ -45,21 +45,23 @@ int main() {
 	room_b.status();
 
 
+room_a.status();
 
-//
-//	Time::Event e1 { Instant {0,0}, Instant {0,0}, room_a};
-//	Time::Event e2 { };
-//
-//	Time::EventList events {};
-//
-//	events.add_event( Time::Instant { 9,00}, {9,10}, room_a );
-//	events.add_event( Time::Instant { 9,05}, {9,10}, room_b );
-//
-//	//update clock
-//	events.update_time( Time::Instant { 9, 00});
-//	events.update_time( Time::Instant { 9, 01});
-//	events.update_time( Time::Instant { 9, 05});
-//	events.update_time( Time::Instant { 9, 10});
+	Time::Event e1 { Instant {0,0}, Instant {0,0}, room_a};
+	Time::Event e2 { };
+
+	Time::EventList events {};
+
+	events.add_event( Time::Instant { 9,00}, {9,10}, room_a );
+	events.add_event( Time::Instant { 9,05}, {9,10}, room_b );
+
+	events.remove_room(room_b);
+
+	//update clock
+	std::cout << "0900:" <<std::endl;events.update_time( Time::Instant { 9, 00});
+	std::cout << "0901:" <<std::endl;events.update_time( Time::Instant { 9, 01});
+	std::cout << "0905:" <<std::endl;events.update_time( Time::Instant { 9, 05});
+	std::cout << "0910:" <<std::endl;events.update_time( Time::Instant { 9, 10});
 
 	return 0;
 }

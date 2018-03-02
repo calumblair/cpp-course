@@ -8,6 +8,7 @@
 #include "Event.h"
 #include "Instant.h"
 #include "Room.h"
+#include <iostream>
 
 namespace Time {
 
@@ -33,6 +34,11 @@ void Event::do_action(const Instant& inst){
 	else{}
 
 
+}
+
+const Home::Room& Event::get_room() const{
+
+	return *room;
 }
 
 } /* namespace Time */

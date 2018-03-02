@@ -28,6 +28,7 @@ public:
 	~EventList();
 	bool add_event(const Instant& inst_on, const Instant& inst_off,  Home::Room&  room );
 	void update_time(const Instant&);
+	void remove_room(const Home::Room&);
 };
 
 } /* namespace Time */

@@ -18,6 +18,7 @@ public:
 	Event(const Instant& inst_on, const Instant& inst_off,  Home::Room&  room );
 	virtual ~Event();
 	void do_action(const Instant& inst);
+	const Home::Room& get_room() const;
 
 private:
 	Instant inst_on {0,0};

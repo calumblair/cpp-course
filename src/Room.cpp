@@ -13,14 +13,6 @@
 #include "Dimmablelamp.h"
 
 namespace Home{
-//helper functions for count_if
-static bool exists_and_is_on(I_switchable* lamp){
-	return (lamp != nullptr && lamp->is_on());
-}
-static bool exists_and_is_off(I_switchable* lamp){
-	return (lamp && !lamp->is_on());
-}
-
 
 Room::Room(const char* new_name): name{new_name}{
 	switches.reserve(initial_switches);
@@ -56,8 +48,12 @@ void Room::dim(uint32_t percent){
 }
 
 void Room::status(void){
-	int lights_on  = std::count_if(switches.begin(), switches.end(), &exists_and_is_on);
-	int lights_off = std::count_if(switches.begin(), switches.end(), &exists_and_is_off);
+	auto exists_and_is_on = [](I_switchable* lamp) ->bool
+			{ return (lamp != nullptr && lamp->is_on()); };
+	auto exists_and_is_off = [](I_switchable* lamp) ->bool
+			{ return (lamp && !lamp->is_on()); };
+	int lights_on  = std::count_if(switches.begin(), switches.end(), exists_and_is_on);
+	int lights_off = std::count_if(switches.begin(), switches.end(), exists_and_is_off);
 	std::cout << "In " << name << " there are " << lights_on << " switches on and "
 			<< lights_off << " lamps off.\n";
 }
